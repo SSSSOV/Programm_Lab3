@@ -40,20 +40,20 @@ public class Main {
                 case 1 -> {
                     pc.printInfo();
                     System.out.println("Press [Enter] for continue...");
-                    reader.read();
+                    reader.readLine();
                 }
                 case 2 -> {
                     System.out.println("Benchmark:");
                     System.out.printf("\tResult performance test: %d points \n", pc.benchmark());
                     System.out.println("Press [Enter] for continue...");
-                    reader.read();
+                    reader.readLine();
                 }
                 case 3 -> {
                     System.out.println("Energy consumption:");
                     System.out.printf("\tCPU + GPU + RAM + SSD consume: %d W\n", pc.consumption());
                     System.out.printf("\tYou need PSU of about: %d W\n", (pc.consumption() + 200) / 50 * 50);
                     System.out.println("Press [Enter] for continue...");
-                    reader.read();
+                    reader.readLine();
                 }
                 case 4 -> {
                     System.out.println("Change parts in PC:");
@@ -192,7 +192,7 @@ public class Main {
                         }
                     }
                     System.out.println("Press [Enter] for continue...");
-                    reader.read();
+                    reader.readLine();
                 }
             }
 
