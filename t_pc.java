@@ -20,19 +20,19 @@ public class t_pc {
     }
 
     public void setCpu(t_cpu cpu) {
-        System.out.print("CPU was changed for pc.\n\n");
+        System.out.print("CPU was changed for pc.\n");
         this.cpu = cpu;
     }
     public void setGpu(t_gpu gpu) {
-        System.out.print("GPU was changed for pc.\n\n");
+        System.out.print("GPU was changed for pc.\n");
         this.gpu = gpu;
     }
     public void setRam(t_ram ram) {
-        System.out.print("RAM was changed for pc.\n\n");
+        System.out.print("RAM was changed for pc.\n");
         this.ram = ram;
     }
     public void setSsd(t_ssd ssd) {
-        System.out.print("SSD was changed for pc.\n\n");
+        System.out.print("SSD was changed for pc.\n");
         this.ssd = ssd;
     }
 
