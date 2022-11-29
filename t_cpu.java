@@ -1,16 +1,22 @@
 public class t_cpu {
+    static int amount;
     private String name;
     private int frequency;
     private int cores;
     private int threads;
     private int power;
+    private int id;
 
+    static { amount = 0; }
+    static int getAmount() { return amount; }
     public t_cpu() {
         name = "DefaultCPU";
         frequency = 1000;
         cores = 1;
         threads = 1;
         power = 10;
+        amount++;
+        id = amount;
         System.out.printf("CPU '%s' was created with default params.\n", name);
     }
     public t_cpu(String name) {
@@ -19,6 +25,8 @@ public class t_cpu {
         cores = 1;
         threads = 1;
         power = 10;
+        amount++;
+        id = amount;
         System.out.printf("CPU '%s' was created with default params.\n", this.name);
     }
     public t_cpu(String name, int frequency, int cores, int threads, int power) {
@@ -27,6 +35,8 @@ public class t_cpu {
         this.cores = cores;
         this.threads = threads;
         this.power = power;
+        amount++;
+        id = amount;
         System.out.printf("CPU '%s' was created.\n", this.name);
     }
 
@@ -65,7 +75,9 @@ public class t_cpu {
         this.power = power;
     }
 
+    public void getId(t_int id) { id.num = this.id; }
+
     public void printParams() {
-        System.out.printf("\tCPU: %s, %d MHz, %d cores, %d threads, %d W\n", this.name, this.frequency, this.cores, this.threads, this.power);
+        System.out.printf("\tCPU (#%d): %s, %d MHz, %d cores, %d threads, %d W\n", this.id, this.name, this.frequency, this.cores, this.threads, this.power);
     }
 }

@@ -7,15 +7,16 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         String name;
+        int cpu_max_amount = 5, gpu_max_amount = 5, ram_max_amount = 5, ssd_max_amount = 5; // Max parts amounts
         int i = 0, f = 0, frequency = 0, cores = 0, threads = 0, power = 0, memory = 0, speed = 0;
 
-        t_cpu[] cpus = new t_cpu[6];
+        t_cpu[] cpus = new t_cpu[cpu_max_amount];
         cpus[0] = new t_cpu();
-        t_gpu[] gpus = new t_gpu[6];
+        t_gpu[] gpus = new t_gpu[gpu_max_amount];
         gpus[0] = new t_gpu();
-        t_ram[] rams = new t_ram[6];
+        t_ram[] rams = new t_ram[ram_max_amount];
         rams[0] = new t_ram();
-        t_ssd[] ssds = new t_ssd[6];
+        t_ssd[] ssds = new t_ssd[ssd_max_amount];
         ssds[0] = new t_ssd();
         t_pc pc = new t_pc(cpus[0], gpus[0], rams[0], ssds[0]);
         System.out.println();
@@ -76,9 +77,9 @@ public class Main {
                         case 1 -> {
                             System.out.println("Change CPU:");
                             System.out.println("\tSelect in list:");
-                            for (i = 0; i < 5; i++) {
-                                if (cpus[i] != null) System.out.printf("\t\t%d. %s\n", i + 1, cpus[i].getName());
-                                else break;
+                            for (i = 0; i < cpu_max_amount && i < t_cpu.getAmount(); i++) {
+//                                if (cpus[i] != null) System.out.printf("\t\t%d. %s\n", i + 1, cpus[i].getName());
+                                System.out.printf("\t\t%d. %s\n", i + 1, cpus[i].getName());
                             }
                             System.out.println("\t\t" + ++i + ". Create new...");
                             System.out.print("> ");
@@ -99,14 +100,15 @@ public class Main {
                                 threads = Integer.parseInt(reader.readLine());
                                 System.out.print("\tInput power: ");
                                 power = Integer.parseInt(reader.readLine());
-                                cpus[f - 1] = new t_cpu(name, frequency, cores, threads, power);
+                                pc.setCpu(new t_cpu(name, frequency, cores, threads, power));
+                                if (f - 1 < cpu_max_amount) cpus[f - 1] = pc.getCpu();
                             }
-                            pc.setCpu(cpus[f - 1]);
+                            else pc.setCpu(cpus[f - 1]);
                         }
                         case 2 -> {
                             System.out.println("Change GPU:");
                             System.out.println("\tSelect in list:");
-                            for (i = 0; i < 5; i++) {
+                            for (i = 0; i < gpu_max_amount; i++) {
                                 if (gpus[i] != null) System.out.printf("\t\t%d. %s\n", i + 1, gpus[i].getName());
                                 else break;
                             }
@@ -128,14 +130,15 @@ public class Main {
                                 memory = Integer.parseInt(reader.readLine());
                                 System.out.print("\tInput power: ");
                                 power = Integer.parseInt(reader.readLine());
-                                gpus[f - 1] = new t_gpu(name, frequency, memory, power);
+                                pc.setGpu(new t_gpu(name, frequency, memory, power));
+                                if (f - 1 < gpu_max_amount) gpus[f - 1] = pc.getGpu();
                             }
-                            pc.setGpu(gpus[f - 1]);
+                            else pc.setGpu(gpus[f - 1]);
                         }
                         case 3 -> {
                             System.out.println("Change RAM:");
                             System.out.println("\tSelect in list:");
-                            for (i = 0; i < 5; i++) {
+                            for (i = 0; i < ram_max_amount; i++) {
                                 if (rams[i] != null) System.out.printf("\t\t%d. %s\n", i + 1, rams[i].getName());
                                 else break;
                             }
@@ -157,14 +160,15 @@ public class Main {
                                 memory = Integer.parseInt(reader.readLine());
                                 System.out.print("\tInput power: ");
                                 power = Integer.parseInt(reader.readLine());
-                                rams[f - 1] = new t_ram(name, frequency, memory, power);
+                                pc.setRam(new t_ram(name, frequency, memory, power));
+                                if (f - 1 < ram_max_amount) rams[f - 1] = pc.getRam();
                             }
-                            pc.setRam(rams[f - 1]);
+                            else pc.setRam(rams[f - 1]);
                         }
                         case 4 -> {
                             System.out.println("Change SSD:");
                             System.out.println("\tSelect in list:");
-                            for (i = 0; i < 5; i++) {
+                            for (i = 0; i < ssd_max_amount; i++) {
                                 if (ssds[i] != null) System.out.printf("\t\t%d. %s\n", i + 1, ssds[i].getName());
                                 else break;
                             }
@@ -186,9 +190,10 @@ public class Main {
                                 memory = Integer.parseInt(reader.readLine());
                                 System.out.print("\tInput power: ");
                                 power = Integer.parseInt(reader.readLine());
-                                ssds[f - 1] = new t_ssd(name, speed, memory, power);
+                                pc.setSsd(new t_ssd(name, speed, memory, power));
+                                if (f - 1 < ssd_max_amount) ssds[f - 1] = pc.getSsd();
                             }
-                            pc.setSsd(ssds[f - 1]);
+                            else pc.setSsd(ssds[f - 1]);
                         }
                     }
                     System.out.println("Press [Enter] for continue...");
