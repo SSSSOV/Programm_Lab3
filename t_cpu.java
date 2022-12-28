@@ -31,10 +31,38 @@ public class t_cpu {
     }
     public t_cpu(String name, int frequency, int cores, int threads, int power) {
         this.name = name;
-        this.frequency = frequency;
-        this.cores = cores;
-        this.threads = threads;
-        this.power = power;
+        try {
+            if (frequency < 1) throw new Exception("InvalidFrequency");
+            this.frequency = frequency;
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            this.frequency = 1000;
+        }
+        try {
+            if (cores < 1) throw new Exception("InvalidCores");
+            this.cores = cores;
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            this.cores = 1;
+        }
+        try {
+            if (threads < 1) throw new Exception("InvalidThreads");
+            this.threads = threads;
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            this.threads = 1;
+        }
+        try {
+            if (power < 1) throw new Exception("InvalidPower");
+            this.power = power;
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            this.power = 10;
+        }
         amount++;
         id = amount;
         System.out.printf("CPU '%s' was created.\n", this.name);
@@ -51,28 +79,60 @@ public class t_cpu {
         return cores;
     }
     public void setCores(int cores) {
-        this.cores = cores;
+        try {
+            if (cores < 1) throw new Exception("InvalidCores");
+            this.cores = cores;
+            System.out.println("Cores value was changed.");
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            System.out.println("Cores value has not changed.");
+        }
     }
 
     public int getFrequency() {
         return frequency;
     }
     public void setFrequency(int frequency) {
-        this.frequency = frequency;
+        try {
+            if (frequency < 1) throw new Exception("InvalidFrequency");
+            this.frequency = frequency;
+            System.out.println("Frequency value was changed.");
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            System.out.println("Frequency value has not changed.");
+        }
     }
 
     public int getThreads() {
         return threads;
     }
     public void setThreads(int threads) {
-        this.threads = threads;
+        try {
+            if (threads < 1) throw new Exception("InvalidThreads");
+            this.threads = threads;
+            System.out.println("Threads value was changed.");
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            System.out.println("Threads value has not changed.");
+        }
     }
 
     public int getPower() {
         return power;
     }
     public void setPower(int power) {
-        this.power = power;
+        try {
+            if (power < 1) throw new Exception("InvalidPower");
+            this.power = power;
+            System.out.println("Power value was changed.");
+        }
+        catch (Exception e) {
+            System.out.println("Error! " + e.toString() + ".");
+            System.out.println("Power value has not changed.");
+        }
     }
 
     public void getId(t_int id) { id.num = this.id; }

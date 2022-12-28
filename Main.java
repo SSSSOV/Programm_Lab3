@@ -4,6 +4,24 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        if(1 == 1){
+            int amount_on_shelf = 5, amount_shelfs = 3;
+            t_cpu[][] rack_with_cpus = new t_cpu[amount_shelfs][amount_on_shelf];
+
+            // Creating cpu with invalid frequency.
+            rack_with_cpus[0][0] = new t_cpu("Ryxen", -4, 324, 2, 4);
+            rack_with_cpus[0][0].printParams();
+
+            // Setting for cpu invalid cores.
+            rack_with_cpus[0][0].setCores(0);
+            rack_with_cpus[0][0].printParams();
+
+            // Setting for cpu correct cores.
+            rack_with_cpus[0][0].setCores(3);
+            rack_with_cpus[0][0].printParams();
+
+            return;
+        }
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         String name;
