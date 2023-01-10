@@ -1,4 +1,4 @@
-public class t_pc {
+public class t_pc implements Cloneable {
     private t_cpu cpu;
     private t_gpu gpu;
     private t_ram ram;
@@ -63,5 +63,17 @@ public class t_pc {
         gpu.printParams();
         ram.printParams();
         ssd.printParams();
+    }
+    public t_pc clone() throws CloneNotSupportedException {
+        t_pc newPc = (t_pc) super.clone();
+        t_cpu cpu = this.getCpu().clone();
+        t_gpu gpu = this.getGpu().clone();
+        t_ram ram = this.getRam().clone();
+        t_ssd ssd = this.getSsd().clone();
+        newPc.setCpu(cpu);
+        newPc.setGpu(gpu);
+        newPc.setRam(ram);
+        newPc.setSsd(ssd);
+        return newPc;
     }
 }

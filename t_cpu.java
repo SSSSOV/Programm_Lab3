@@ -1,36 +1,28 @@
-public class t_cpu {
-    static int amount;
-    private String name;
+public class t_cpu extends t_part implements Cloneable{
     private int frequency;
     private int cores;
     private int threads;
-    private int power;
-    private int id;
 
-    static { amount = 0; }
-    static int getAmount() { return amount; }
     public t_cpu() {
-        name = "DefaultCPU";
+        super("DefaultCPU", 10);
         frequency = 1000;
         cores = 1;
         threads = 1;
-        power = 10;
         amount++;
         id = amount;
         System.out.printf("CPU '%s' was created with default params.\n", name);
     }
     public t_cpu(String name) {
-        this.name = name;
+        super(name, 10);
         frequency = 1000;
         cores = 1;
         threads = 1;
-        power = 10;
         amount++;
         id = amount;
         System.out.printf("CPU '%s' was created with default params.\n", this.name);
     }
     public t_cpu(String name, int frequency, int cores, int threads, int power) {
-        this.name = name;
+        super(name, power);
         try {
             if (frequency < 1) throw new Exception("InvalidFrequency");
             this.frequency = frequency;
@@ -55,24 +47,9 @@ public class t_cpu {
             System.out.println("Error! " + e.toString() + ".");
             this.threads = 1;
         }
-        try {
-            if (power < 1) throw new Exception("InvalidPower");
-            this.power = power;
-        }
-        catch (Exception e) {
-            System.out.println("Error! " + e.toString() + ".");
-            this.power = 10;
-        }
         amount++;
         id = amount;
         System.out.printf("CPU '%s' was created.\n", this.name);
-    }
-
-    public String getName(){
-        return name;
-    }
-    public void setName(String name){
-        this.name = name;
     }
 
     public int getCores() {
@@ -120,24 +97,10 @@ public class t_cpu {
         }
     }
 
-    public int getPower() {
-        return power;
-    }
-    public void setPower(int power) {
-        try {
-            if (power < 1) throw new Exception("InvalidPower");
-            this.power = power;
-            System.out.println("Power value was changed.");
-        }
-        catch (Exception e) {
-            System.out.println("Error! " + e.toString() + ".");
-            System.out.println("Power value has not changed.");
-        }
-    }
-
-    public void getId(t_int id) { id.num = this.id; }
-
     public void printParams() {
         System.out.printf("\tCPU (#%d): %s, %d MHz, %d cores, %d threads, %d W\n", this.id, this.name, this.frequency, this.cores, this.threads, this.power);
+    }
+    public t_cpu clone() throws CloneNotSupportedException {
+        return (t_cpu) super.clone();
     }
 }

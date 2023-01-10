@@ -3,8 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        if(1 == 1){
+    public static void main(String[] args) throws IOException, CloneNotSupportedException {
+        int key = 2;
+        if(key == 1){
             int amount_on_shelf = 5, amount_shelfs = 3;
             t_cpu[][] rack_with_cpus = new t_cpu[amount_shelfs][amount_on_shelf];
 
@@ -19,6 +20,37 @@ public class Main {
             // Setting for cpu correct cores.
             rack_with_cpus[0][0].setCores(3);
             rack_with_cpus[0][0].printParams();
+
+            return;
+        }
+        if(key == 2){
+            System.out.println("\tOverload method printParams():\n");
+            t_cpu cpu1 = new t_cpu();
+            cpu1.printParams();
+
+            System.out.println("\tAbstract and interface():\n");
+            user user1 = new user("Klass", 19);
+            user1.print();
+
+            System.out.println("\tDeep cloning and changing field in cloned:\n");
+            t_pc pc = new t_pc();
+            t_pc clonedPc = pc.clone();
+            System.out.println("\nOriginal:\t");
+            pc.printInfo();
+            System.out.println("Clone:   \t");
+            clonedPc.printInfo();
+
+            t_cpu clonedPcCpu = clonedPc.getCpu();
+            clonedPcCpu.setName("Ryzen");
+
+            System.out.println("\nOriginal after cloning:\t");
+            pc.printInfo();
+            System.out.println("Clone after cloning:   \t");
+            clonedPc.printInfo();
+
+            System.out.println("\n\tClass pattern:\n");
+            storage<user> strg = new storage<user>(user1);
+            strg.print();
 
             return;
         }

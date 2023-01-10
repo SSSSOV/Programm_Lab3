@@ -1,36 +1,25 @@
-public class t_ram {
-    private String name;
+public class t_ram extends t_part implements Cloneable{
     private int frequency;
     private int memory;
-    private int power;
 
     public t_ram(){
+        super("DefaultRAM", 10);
         name = "DefaultRAM";
         frequency = 1000;
         memory = 1;
-        power = 10;
         System.out.printf("RAM '%s' was created with default params.\n", name);
     }
     public t_ram(String name){
-        this.name = name;
+        super(name, 10);
         frequency = 1000;
         memory = 1;
-        power = 10;
         System.out.printf("RAM '%s' was created with default params.\n", this.name);
     }
     public t_ram(String name, int frequency, int memory, int power){
-        this.name = name;
+        super(name, power);
         this.frequency = frequency;
         this.memory = memory;
-        this.power = power;
         System.out.printf("RAM '%s' was created.\n", this.name);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getName() {
-        return name;
     }
 
     public void setFrequency(int frequency) {
@@ -47,14 +36,10 @@ public class t_ram {
         return memory;
     }
 
-    public void setPower(int power) {
-        this.power = power;
-    }
-    public int getPower() {
-        return power;
-    }
-
     public void printParams() {
         System.out.printf("\tRAM: %s, %d MHz, %d Gb, %d W\n", this.name, this.frequency, this.memory, this.power);
+    }
+    public t_ram clone() throws CloneNotSupportedException {
+        return (t_ram) super.clone();
     }
 }
