@@ -1,10 +1,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException, CloneNotSupportedException {
-        int key = 2;
+        int key = 3;
         if(key == 1){
             int amount_on_shelf = 5, amount_shelfs = 3;
             t_cpu[][] rack_with_cpus = new t_cpu[amount_shelfs][amount_on_shelf];
@@ -51,6 +52,34 @@ public class Main {
             System.out.println("\n\tClass pattern:\n");
             storage<user> strg = new storage<user>(user1);
             strg.print();
+
+            return;
+        }
+        if(key == 3){
+            int result;
+            ArrayList<t_part> list_of_parts = new ArrayList<t_part>();
+
+            t_part part1  = new t_part();
+            t_cpu cpu1 = new t_cpu("SomeCPU",1000, 10, 20, 100);
+            list_of_parts.add(part1);
+            list_of_parts.add(cpu1);
+
+            System.out.print("\nItems in list:\n");
+            for (t_part var : list_of_parts) {
+                var.printParams();
+            }
+            list_of_parts.sort(new Compare());
+            System.out.print("\nItems in list after sorting:\n");
+            for (t_part var : list_of_parts) {
+                var.printParams();
+            }
+            System.out.print("\nSearch in list:");
+            result = t_part.FindByName(list_of_parts, "SomeCPU");
+            if (result == -1) System.out.print("Item not Found\n");
+            System.out.print("\nFound element:\n");
+            list_of_parts.get(result).printParams();
+            System.out.println();
+
 
             return;
         }

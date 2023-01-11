@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class t_part {
     protected static int amount;
     protected int id;
@@ -58,5 +60,14 @@ public class t_part {
 
     public int Benchmark() {
         return 0;
+    }
+
+    public static int FindByName(ArrayList<t_part> lists, String name) {
+        for (int i = 0; i < lists.size(); i++) {
+            if (lists.get(i).getName().equals(name)){
+                return i;
+            }
+        }
+        return -1;
     }
 }
